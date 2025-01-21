@@ -18,6 +18,9 @@ export default ({ mode }: { mode: string }) => {
         "@": path.resolve(__dirname, "src"),
       },
     },
+    define: {
+      __VITE_BACKEND_URL__: JSON.stringify(apiEndpoint),
+    },
     server: {
       proxy: {
         "/api": {
