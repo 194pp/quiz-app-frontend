@@ -12,7 +12,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import useEmblaCarousel from "embla-carousel-react";
+import { BACKEND_URL } from "@/constants/backend";
 
 export const Route = createFileRoute("/")({
   component: HomeComponent,
@@ -28,7 +28,9 @@ function HomeComponent() {
   const { data } = useQuery<TQuiz[]>({
     queryKey: ["quizzes"],
     queryFn: async () => {
-      const data = await fetch(`api/quiz`).then((res) => res.json());
+      const data = await fetch(`${BACKEND_URL}/api/quiz`).then((res) =>
+        res.json()
+      );
       return data;
     },
   });
