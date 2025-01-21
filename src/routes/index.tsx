@@ -28,9 +28,7 @@ function HomeComponent() {
   const { data } = useQuery<TQuiz[]>({
     queryKey: ["quizzes"],
     queryFn: async () => {
-      const data = await fetch(`https://zilkan.click/api/quiz`).then((res) =>
-        res.json()
-      );
+      const data = await fetch(`api/quiz`).then((res) => res.json());
       return data;
     },
   });
