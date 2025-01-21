@@ -33,7 +33,7 @@ This is a frontend application for a quiz platform, built using modern web techn
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/quiz-app-frontend.git
+   git clone https://github.com/194pp/quiz-app-frontend.git
    cd quiz-app-frontend
    ```
 
@@ -45,7 +45,12 @@ This is a frontend application for a quiz platform, built using modern web techn
    yarn install
    ```
 
-3. Create a `.env` file in the root directory and add your environment variables. Refer to `.env.example` for the required variables.
+3. Create a `.env` file in the root directory and add your environment variables.
+   Make sure PORT matches the port of the backend server.
+
+   ```bash
+   VITE_BACKEND_URL=http://localhost:5001
+   ```
 
 ### Running the Application
 
@@ -88,18 +93,6 @@ This is a frontend application for a quiz platform, built using modern web techn
 - **`src/components/quiz/quiz-card.tsx`**: Component for rendering quiz questions.
 - **`src/components/leaderboard/leaderboard-table.tsx`**: Component for displaying the leaderboard.
 
-## Contributing
-
-Contributions are welcome! Please fork the repository and submit a pull request for any improvements or bug fixes.
-
 ## License
 
 This project is licensed under the MIT License.
-
-## Contact
-
-For any questions or feedback, please contact [your-email@example.com](mailto:your-email@example.com).
-
----
-
-This README provides a basic overview of the project. For more detailed information, please refer to the code and comments within the project files.
