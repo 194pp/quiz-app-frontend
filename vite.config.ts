@@ -7,7 +7,9 @@ export default ({ mode }: { mode: string }) => {
   const env = loadEnv(mode, process.cwd(), "VITE");
 
   const apiEndpoint =
-    env?.VITE_BACKEND_URL ?? process?.env?.VITE_BACKEND_URL ?? "";
+    env?.VITE_BACKEND_URL ??
+    JSON.stringify(process?.env?.VITE_BACKEND_URL ?? "") ??
+    "";
 
   return defineConfig({
     plugins: [TanStackRouterVite({}), react()],
