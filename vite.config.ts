@@ -6,7 +6,7 @@ import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 export default ({ mode }: { mode: string }) => {
   const env = loadEnv(mode, process.cwd(), "VITE");
 
-  const apiEndpoint = env.VITE_BACKEND_URL ?? "";
+  const apiEndpoint = env.VITE_BACKEND_URL ?? "https://zilkan.click";
 
   return defineConfig({
     plugins: [TanStackRouterVite({}), react()],
