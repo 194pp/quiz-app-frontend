@@ -21,7 +21,7 @@ export default ({ mode }: { mode: string }) => {
     server: {
       proxy: {
         "/api": {
-          target: apiEndpoint,
+          target: "https://zilkan.click",
           changeOrigin: true,
           secure: false,
           ws: true,
