@@ -40,10 +40,10 @@ export const quizSlice = createSlice({
     ) => {
       const { id, value } = action.payload;
       const quiz = state.find((quiz) => quiz.id === id);
-      console.log("test");
       if (!quiz) return state;
       if (!quiz?.checkboxValues) {
         quiz.checkboxValues = [value];
+        return state;
       }
 
       if (quiz?.checkboxValues?.includes(value)) {
@@ -51,7 +51,6 @@ export const quizSlice = createSlice({
       } else {
         quiz.checkboxValues?.push(value);
       }
-      // return state;
     },
     setTextValues: (
       state,

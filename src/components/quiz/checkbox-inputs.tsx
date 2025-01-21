@@ -23,11 +23,12 @@ export const CheckboxInputs = ({
   return (
     <div>
       {answerOptions?.map((option, index) => (
-        <div key={index}>
+        <div key={index} className="flex items-center gap-4 p-2">
           <Checkbox
             id={`checkbox-${index}-${quizId}`}
             value={index}
             checked={quiz?.checkboxValues?.includes(index)}
+            className="data-[state=checked]:bg-sky-500"
             onCheckedChange={(checked) => {
               dispatch(
                 setCheckboxValues({
@@ -37,7 +38,12 @@ export const CheckboxInputs = ({
               );
             }}
           />
-          <Label htmlFor={`checkbox-${index}-${quizId}`}>{option}</Label>
+          <Label
+            htmlFor={`checkbox-${index}-${quizId}`}
+            className="cursor-pointer lg:text-2xl"
+          >
+            {option}
+          </Label>
         </div>
       ))}
     </div>

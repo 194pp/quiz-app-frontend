@@ -16,8 +16,12 @@ export const QuizProgress = () => {
   if (quiz.length === 0) return null;
 
   return (
-    <div>
-      <CustomProgress indicatorColor="bg-sky-500" value={value || -1} />
+    <div className="flex w-full justify-center">
+      <CustomProgress
+        className="lg:w-[1000px]"
+        indicatorColor="bg-sky-500"
+        value={value || -1}
+      />
     </div>
   );
 };

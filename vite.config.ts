@@ -4,9 +4,9 @@ import react from "@vitejs/plugin-react";
 import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 
 export default ({ mode }: { mode: string }) => {
-  const env = loadEnv(mode, process.cwd(), "");
+  const env = loadEnv(mode, process.cwd(), "VITE");
 
-  console.log(env.VITE_BACKEND_URL);
+  const apiEndpoint = env.VITE_BACKEND_URL ?? "";
 
   return defineConfig({
     plugins: [TanStackRouterVite({}), react()],
@@ -18,8 +18,7 @@ export default ({ mode }: { mode: string }) => {
     server: {
       proxy: {
         "/api": {
-          // target: process.env.VITE_BACKEND_URL,
-          target: "https://localhost:7268",
+          target: apiEndpoint,
           changeOrigin: true,
           secure: false,
           ws: true,

@@ -17,11 +17,12 @@ export const TextInputs = ({ quizId, answerType }: TTextInputProps) => {
   if (answerType !== "text") return null;
 
   return (
-    <div>
+    <div className="">
       <Input
         id={`text-${quizId}`}
         placeholder="Answer here"
         value={quiz?.textValue}
+        className="p-2 lg:px-4 lg:py-8 lg:text-2xl"
         onChange={(e) => {
           dispatch(setTextValues({ id: quizId, value: e.target.value }));
         }}

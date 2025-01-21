@@ -23,15 +23,21 @@ export const RadioInputs = ({
   return (
     <RadioGroup value={`${quiz?.radioValue ?? ""}`}>
       {answerOptions?.map((option, index) => (
-        <div key={index} className="flex items-center gap-2">
+        <div key={index} className="flex items-center gap-4 p-2">
           <RadioGroupItem
             value={index.toString()}
             id={`radio-${index}-${quizId}`}
+            className="data-[state=checked]:bg-sky-500"
             onClick={() => {
               dispatch(setRadioValue({ id: quizId, value: index.toString() }));
             }}
           />
-          <Label htmlFor={`radio-${index}-${quizId}`}>{option}</Label>
+          <Label
+            htmlFor={`radio-${index}-${quizId}`}
+            className="cursor-pointer lg:text-2xl"
+          >
+            {option}
+          </Label>
         </div>
       ))}
     </RadioGroup>

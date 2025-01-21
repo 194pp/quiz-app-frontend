@@ -6,4 +6,10 @@ export type TQuiz = {
   answerTextInputs?: number;
 };
 
+export type THighscore = {
+  id: string;
+  email: string;
+  score: number;
+};
+
 export type TAnswerType = "radio" | "checkbox" | "text";

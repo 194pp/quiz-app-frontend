@@ -11,10 +11,21 @@ import { Button } from "../ui/button";
 import { CheckboxInputs } from "./checkbox-inputs";
 import { RadioInputs } from "./radio-inputs";
 import { TextInputs } from "./text-inputs";
+import { useMutation } from "@tanstack/react-query";
+import { QuizSubmitDialog } from "./quiz-submit-dialog";
 
-type TQuizCardProps = TQuiz & { index: number };
+type TQuizCardProps = TQuiz & {
+  index: number;
+  onPrevious: () => void;
+  onNext: () => void;
+};
 
-export const QuizCard = ({ index, ...quiz }: TQuizCardProps) => {
+export const QuizCard = ({
+  index,
+  onPrevious,
+  onNext,
+  ...quiz
+}: TQuizCardProps) => {
   const answerType =
     quiz.isRadioOptions === undefined
       ? "text"
@@ -23,13 +34,17 @@ export const QuizCard = ({ index, ...quiz }: TQuizCardProps) => {
         : "checkbox";
 
   return (
-    <Card className="h-full w-full">
+    <Card className="flex h-[calc(100vh-100px)] w-full flex-col lg:w-[1000px] lg:max-w-full lg:p-4">
       <CardHeader>
-        <CardTitle>Question {index + 1}</CardTitle>
-        <CardDescription>{quiz.question}</CardDescription>
+        <CardTitle className="opacity-50 lg:text-4xl">
+          Question {index + 1}
+        </CardTitle>
+        <CardDescription className="font-bold lg:text-8xl">
+          {quiz.question}
+        </CardDescription>
       </CardHeader>
-      <CardContent>
-        <form>
+      <CardContent className="flex flex-1 flex-col justify-center">
+        <form className="lg:text-2xl">
           <RadioInputs
             quizId={quiz.id}
             answerOptions={quiz.answerOptions}
@@ -46,8 +61,25 @@ export const QuizCard = ({ index, ...quiz }: TQuizCardProps) => {
         </form>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant="outline">Back</Button>
-        <Button>Next</Button>
+        <Button
+          variant="outline"
+          size={"lg"}
+          className="lg:h-16 lg:text-2xl"
+          onClick={onPrevious}
+        >
+          Back
+        </Button>
+
+        <QuizSubmitDialog />
+
+        <Button
+          variant="outline"
+          size={"lg"}
+          className="lg:h-16 lg:text-2xl"
+          onClick={onNext}
+        >
+          Next
+        </Button>
       </CardFooter>
     </Card>
   );

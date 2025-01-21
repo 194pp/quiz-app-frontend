@@ -5,6 +5,7 @@ import { Navigation } from "@/navigation";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { store } from "@/store";
 import { Provider as ReduxProvider } from "react-redux";
+import { Toaster } from "sonner";
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -19,6 +20,7 @@ function RootComponent() {
         <Navigation />
         <Outlet />
         <TanStackRouterDevtools position="bottom-right" />
+        <Toaster />
       </QueryClientProvider>
     </ReduxProvider>
   );
