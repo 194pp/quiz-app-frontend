@@ -1,6 +1,5 @@
-import * as React from "react";
 import { Outlet, createRootRoute } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+// import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { Navigation } from "@/navigation";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { store } from "@/store";
@@ -19,7 +18,7 @@ function RootComponent() {
       <QueryClientProvider client={queryClient}>
         <Navigation />
         <Outlet />
-        <TanStackRouterDevtools position="bottom-right" />
+        {/* <TanStackRouterDevtools position="bottom-right" /> */}
         <Toaster />
       </QueryClientProvider>
     </ReduxProvider>
