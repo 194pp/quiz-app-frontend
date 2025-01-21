@@ -5,3 +5,5 @@ export type TQuiz = {
   isRadioOptions?: boolean;
   answerTextInputs?: number;
 };
+
+export type TAnswerType = "radio" | "checkbox" | "text";

@@ -1,4 +1,4 @@
-import { TQuiz } from "@/types/query";
+import { TQuiz } from "@/types/global";
 import {
   Card,
   CardContent,
@@ -7,44 +7,47 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { CheckboxInputs } from "./checkbox-inputs";
+import { RadioInputs } from "./radio-inputs";
+import { TextInputs } from "./text-inputs";
 
-export const QuizCard = ({ quiz }: { quiz: TQuiz }) => {
+type TQuizCardProps = TQuiz & { index: number };
+
+export const QuizCard = ({ index, ...quiz }: TQuizCardProps) => {
+  const answerType =
+    quiz.isRadioOptions === undefined
+      ? "text"
+      : quiz.isRadioOptions
+        ? "radio"
+        : "checkbox";
+
   return (
-    <Card className="w-[350px]">
+    <Card className="h-full w-full">
       <CardHeader>
-        <CardTitle>Create project</CardTitle>
-        <CardDescription>Deploy your new project in one-click.</CardDescription>
+        <CardTitle>Question {index + 1}</CardTitle>
+        <CardDescription>{quiz.question}</CardDescription>
       </CardHeader>
       <CardContent>
         <form>
-          <div className="grid w-full items-center gap-4">
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" placeholder="Name of your project" />
-            </div>
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="framework">Framework</Label>
-              {/* <Select>
-              <SelectTrigger id="framework">
-                <SelectValue placeholder="Select" />
-              </SelectTrigger>
-              <SelectContent position="popper">
-                <SelectItem value="next">Next.js</SelectItem>
-                <SelectItem value="sveltekit">SvelteKit</SelectItem>
-                <SelectItem value="astro">Astro</SelectItem>
-                <SelectItem value="nuxt">Nuxt.js</SelectItem>
-              </SelectContent>
-            </Select> */}
-            </div>
-          </div>
+          <RadioInputs
+            quizId={quiz.id}
+            answerOptions={quiz.answerOptions}
+            answerType={answerType}
+          />
+
+          <CheckboxInputs
+            quizId={quiz.id}
+            answerOptions={quiz.answerOptions}
+            answerType={answerType}
+          />
+
+          <TextInputs quizId={quiz.id} answerType={answerType} />
         </form>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant="outline">Cancel</Button>
-        <Button>Deploy</Button>
+        <Button variant="outline">Back</Button>
+        <Button>Next</Button>
       </CardFooter>
     </Card>
   );

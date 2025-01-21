@@ -1,25 +1,59 @@
-import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { TQuiz } from "@/types/query";
+import { TQuiz } from "@/types/global";
 import { QuizCard } from "@/components/quiz/quiz-card";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { setQuizzes } from "@/store/slice/quiz";
+import { useEffect } from "react";
+import { QuizProgress } from "@/components/quiz/quiz-progress";
+import {
+  Carousel,
+  CarouselNext,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import useEmblaCarousel from "embla-carousel-react";
 
 export const Route = createFileRoute("/")({
   component: HomeComponent,
 });
 
 function HomeComponent() {
+  const dispatch = useAppDispatch();
+  const quiz = useAppSelector((state) => state.quiz);
+  const [emblaRef, emblaApi] = useEmblaCarousel();
+
   const { data } = useQuery<TQuiz[]>({
     queryKey: ["quizzes"],
-    queryFn: () =>
-      fetch("https://localhost:7268/api/quiz").then((res) => res.json()),
+    queryFn: async () => {
+      const data = await fetch(`api/quiz`).then((res) => res.json());
+      return data;
+    },
   });
 
+  useEffect(() => {
+    if (data && quiz.length === 0) {
+      const initialState = data.map((quiz) => ({
+        id: quiz.id,
+      }));
+      dispatch(setQuizzes(initialState));
+    }
+  }, [data]);
+
   return (
-    <div className="p-2">
-      <h3 className="">Welcome Home!</h3>
-      {data?.map((quiz) => <QuizCard quiz={quiz} />)}
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+    <div className="flex-1 px-4 py-2">
+      <Carousel className="w-full" ref={emblaRef}>
+        <CarouselContent>
+          {data?.map((quiz, index) => (
+            <CarouselItem key={index}>
+              <QuizCard {...quiz} index={index} />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
+
+      <QuizProgress />
     </div>
   );
 }

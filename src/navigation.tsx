@@ -7,7 +7,7 @@ import { Link, LinkProps } from "@tanstack/react-router";
 
 export const Navigation = () => {
   return (
-    <div className="flex items-center justify-center p-2">
+    <div className="flex flex-shrink-0 items-center justify-center p-2">
       <NavigationMenu>
         <NavigationMenuList className="flex w-full justify-center gap-2 p-2 text-lg">
           <NavigationMenuItem>
