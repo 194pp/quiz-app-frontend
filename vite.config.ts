@@ -6,10 +6,7 @@ import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 export default ({ mode }: { mode: string }) => {
   const env = loadEnv(mode, process.cwd(), "VITE");
 
-  const apiEndpoint =
-    env?.VITE_BACKEND_URL ??
-    JSON.stringify(process?.env?.VITE_BACKEND_URL ?? "") ??
-    "";
+  const apiEndpoint = env?.VITE_BACKEND_URL ?? "";
 
   return defineConfig({
     plugins: [TanStackRouterVite({}), react()],
@@ -19,7 +16,7 @@ export default ({ mode }: { mode: string }) => {
       },
     },
     define: {
-      __VITE_BACKEND_URL__: JSON.stringify(apiEndpoint),
+      __VITE_BACKEND_URL__: JSON.stringify(process.env.VITE_BACKEND_URL),
     },
     server: {
       proxy: {
