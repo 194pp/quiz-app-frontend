@@ -45,12 +45,7 @@ This is a frontend application for a quiz platform, built using modern web techn
    yarn install
    ```
 
-3. Create a `.env` file in the root directory and add your environment variables.
-   Make sure PORT matches the port of the backend server.
-
-   ```bash
-   VITE_BACKEND_URL=http://localhost:5001
-   ```
+3. Change the `BACKEND_URL` in the `src/constants/backend.ts` file to mach local backend url.
 
 ### Running the Application
 

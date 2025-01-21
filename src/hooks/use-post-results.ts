@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "@/constants/backend";
 import { useAppSelector } from "@/store/hooks";
 import { useMutation } from "@tanstack/react-query";
 
@@ -19,7 +20,7 @@ export const usePostResults = () => {
 
   return useMutation({
     mutationFn: () => {
-      return fetch("/api/quiz", {
+      return fetch(`${BACKEND_URL}/api/quiz`, {
         method: "POST",
         body: JSON.stringify(requestBody),
         headers: {

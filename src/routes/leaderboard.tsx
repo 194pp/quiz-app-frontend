@@ -1,5 +1,6 @@
 import { LeaderboardTable } from "@/components/leaderboard/leaderboard-table";
 import { Button } from "@/components/ui/button";
+import { BACKEND_URL } from "@/constants/backend";
 import { THighscore } from "@/types/global";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
@@ -13,7 +14,9 @@ function RouteComponent() {
   const { data } = useQuery<THighscore[]>({
     queryKey: ["quizzes"],
     queryFn: async () => {
-      const data = await fetch(`api/highscore`).then((res) => res.json());
+      const data = await fetch(`${BACKEND_URL}/api/highscore`).then((res) =>
+        res.json()
+      );
       return data;
     },
   });
