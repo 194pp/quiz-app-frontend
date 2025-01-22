@@ -34,7 +34,7 @@ export const QuizCard = ({
         : "checkbox";
 
   return (
-    <Card className="flex h-[calc(100vh-100px)] w-full flex-col lg:w-[1000px] lg:max-w-full lg:p-4">
+    <Card className="flex h-[calc(100dvh-100px)] w-full flex-col lg:w-[1000px] lg:max-w-full lg:p-4">
       <CardHeader>
         <CardTitle className="opacity-50 lg:text-4xl">
           Question {index + 1}
