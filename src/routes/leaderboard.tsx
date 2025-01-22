@@ -24,7 +24,9 @@ function RouteComponent() {
   return (
     <div className="flex w-full flex-col items-center">
       <div className="flex flex-1 flex-col gap-2 px-4 py-2 lg:w-[1000px]">
-        <LeaderboardTable highscores={data || []} />
+        <LeaderboardTable
+          highscores={data?.sort((a, b) => b.score - a.score) || []}
+        />
       </div>
     </div>
   );
